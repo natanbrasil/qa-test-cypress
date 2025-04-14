@@ -9,8 +9,8 @@ describe ('Orange HRM Tests', () => {
     })
     it('Login-Fail', () => {
         cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-        cy.get(':nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-input').type('Admin1')
-        cy.get(':nth-child(3) > .oxd-input-group > :nth-child(2) > .oxd-input').type('admin1234')
+        cy.get("input[placeholder='Username']").type('Admin1')
+        cy.get("input[placeholder='Password']").type('admin1234')
         cy.get('.oxd-button').click()
         cy.get("div[role='alert']").should('be.visible')
         //caso queira pular esse teste pode user o it.skip
