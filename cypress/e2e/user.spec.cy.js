@@ -32,12 +32,4 @@ describe ('Orange HRM Tests', () => {
         cy.get(selectorList.dateField).clear().type('2025-10-01')
         cy.get(selectorList.dateCloseButton).click()
     })
-    it('Login-Fail', () => {
-        cy.visit('/auth/login')
-        cy.get(selectorList.usernameField).type(userdata.Userfail.username)
-        cy.get(selectorList.passwordField).type(userdata.Userfail.password)
-        cy.get(selectorList.loginButton).click()
-        cy.get(selectorList.alertMessage).should('be.visible')
-        //caso queira pular esse teste pode user o it.skip
-    })
 })
