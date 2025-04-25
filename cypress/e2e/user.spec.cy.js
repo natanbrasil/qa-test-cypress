@@ -14,8 +14,8 @@ describe ('Orange HRM Tests', () => {
         lastNameField: "input[placeholder='Last Name']",
         driverLicenseField: ":nth-child(2) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input",
         dateField: ":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-input",
-        dateCloseButton: ".oxd-form > :nth-child(3) > :nth-child(2)"
-
+        dateCloseButton: ".oxd-form > :nth-child(3) > :nth-child(2)",
+        saveButton: "button[type='submit']"
     }
 
     it.only('User Info Update - Sucess', () => {
@@ -31,5 +31,6 @@ describe ('Orange HRM Tests', () => {
         cy.get(selectorList.driverLicenseField).clear().type('123456789')
         cy.get(selectorList.dateField).clear().type('2025-10-01')
         cy.get(selectorList.dateCloseButton).click()
+        cy.get(selectorList.saveButton).eq(0).click()
     })
 })
