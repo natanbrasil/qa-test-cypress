@@ -1,3 +1,4 @@
-cypres/support/
+cypress/support/
 node_modules/
+packege-lock.json
 .DS_Store
