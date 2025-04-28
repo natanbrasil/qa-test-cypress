@@ -1,29 +1,21 @@
 import userdata from '../fixtures/users/userData.json'
+import LoginPage from '../pages/loginPage'
+import DashboardPage from '../pages/dashboardPage'  
+
+const loginPage = new LoginPage()
+const dashboardPage = new DashboardPage()
 
 describe ('Orange HRM Tests', () => {
 
-    const selectorList = {
-        usernameField: "input[placeholder='Username']",
-        passwordField: "input[placeholder='Password']",
-        loginButton: "button[type='submit']",
-        sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
-        alertMessage: "div[role='alert']"
-    }
-
-    it('Login-Sucess', () => {
-        cy.visit('/auth/login')
-        cy.get(selectorList.usernameField).type(userdata.userSucess.username)
-        cy.get(selectorList.passwordField).type(userdata.userSucess.password)
-        cy.get(selectorList.loginButton).click()
-        cy.url('pathname').should('eq', 'https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index') 
-        cy.get(selectorList.sectionTitleTopBar).contains('Dashboard')
+    it('Access Failed', () => {
+        loginPage.accessLoginPage()
+        loginPage.loginWitAnyUser(userdata.userFail.username, userdata.userFail.password)
+        loginPage.checkAcessInvalid()
     })
-    it('Login-Fail', () => {
-        cy.visit('/auth/login')
-        cy.get(selectorList.usernameField).type(userdata.Userfail.username)
-        cy.get(selectorList.passwordField).type(userdata.Userfail.password)
-        cy.get(selectorList.loginButton).click()
-        cy.get(selectorList.alertMessage).should('be.visible')
-        //caso queira pular esse teste pode user o it.skip
+
+    it('Access Sucess', () => {
+        loginPage.accessLoginPage()
+        loginPage.loginWitAnyUser(userdata.userSucess.username, userdata.userSucess.password)
+        dashboardPage.checkDashboardPage()
     })
 })
